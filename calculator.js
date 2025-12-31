@@ -38,3 +38,15 @@ function playRound() {
 
 }
 
+function playGame(){
+    rounds = Number(prompt("How many rounds?\nDefault: 5") || 5)
+    alert(`The first to get ${rounds} wins is the winner\nGood luck`)
+    while((humanScore + CompScore) != rounds){
+        playRound()
+    }
+    winner = humanScore > CompScore ? "You" : "The Computer";
+    alert(`${winner} have won the total game`);
+    return;
+}
+
+playGame()
