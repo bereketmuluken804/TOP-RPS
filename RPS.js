@@ -18,24 +18,34 @@ function getHumanChoice(){
 let humanScore = 0;
 let CompScore = 0;
 
-function playRound() {
-
-    let hc = getHumanChoice();
+function playRound(humanChoice) {
+    let result
+  
+    let hc = humanChoice;
     let cc = getComputerChoice();
-    let win = "lost!";
+    let disc;
+    
     if(hc === cc) {
-        alert(`It's a Draw\nYou: ${humanScore}           computer: ${CompScore}\n`)
-        return;}
+        disc = "Draw";
+        }
     
     else if ((hc === "Rock" && cc === "Scissors") || (hc === "Scissors" && cc === "Paper") || (hc === "Paper" && cc === "Rock")){
-        win ="won!";
+        disc ="You won!";
         humanScore++;
     }
     else {
+        disc = "You lost!";
         CompScore++;
     }
-    alert(`You: ${humanScore}           computer: ${CompScore}\nYou've ${win}\nYou: ${hc}    Computer: ${cc}`)
-
+    if (humanScore === 5 || CompScore === 5){
+        winner = humanScore > CompScore ? "You" : "The Computer";
+        result = `Game Over!!!    The winner is ${winner}`;
+        score_board.textContent = result;
+        return;
+    } 
+    result = ` ========= ${disc} =========== \nYou: ${humanScore}          computer: ${CompScore}\nYou: ${hc}    Computer: ${cc}`;
+    score_board.textContent = result;
+    return;
 }
 
 function playGame(){
@@ -49,4 +59,12 @@ function playGame(){
     return;
 }
 
-playGame()
+const btns = document.querySelectorAll("button")
+
+btns.forEach(btn=>{
+    btn.addEventListener("click", (e) => {
+        playRound(e.target.textContent);
+    });
+});
+
+const score_board = document.querySelector(".scoreBoard")
