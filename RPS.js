@@ -20,7 +20,9 @@ let CompScore = 0;
 
 function playRound(humanChoice) {
     let result
-  
+    if (humanScore > 4 || CompScore > 4){
+        return;
+    } 
     let hc = humanChoice;
     let cc = getComputerChoice();
     let disc;
@@ -37,27 +39,23 @@ function playRound(humanChoice) {
         disc = "You lost!";
         CompScore++;
     }
-    if (humanScore === 5 || CompScore === 5){
+        if (humanScore > 4 || CompScore > 4){
         winner = humanScore > CompScore ? "You" : "The Computer";
         result = `Game Over!!!    The winner is ${winner}`;
-        score_board.textContent = result;
+        score = `You: ${humanScore}__________computer: ${CompScore}`;
+        score_board.lastElementChild.textContent = result;
+        score_board.firstElementChild.textContent = score;
         return;
     } 
-    result = ` ========= ${disc} =========== \nYou: ${humanScore}          computer: ${CompScore}\nYou: ${hc}    Computer: ${cc}`;
-    score_board.textContent = result;
+    
+    score = `You: ${humanScore}  __________   computer: ${CompScore}`;
+    picks = `You: ${hc} ______ Computer: ${cc}`
+    score_board.firstElementChild.textContent = score;
+    score_board.lastElementChild.textContent = picks;
     return;
 }
 
-function playGame(){
-    rounds = Number(prompt("How many rounds?\nDefault: 5") || 5)
-    alert(`The first to get ${rounds} wins is the winner\nGood luck`)
-    while((humanScore + CompScore) != rounds){
-        playRound()
-    }
-    winner = humanScore > CompScore ? "You" : "The Computer";
-    alert(`${winner} have won the total game`);
-    return;
-}
+
 
 const btns = document.querySelectorAll("button")
 

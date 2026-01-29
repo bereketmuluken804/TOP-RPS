@@ -7,10 +7,33 @@
 </head>
 <style>
 
+.container {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    
+}
+.scoreBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 70%;
+    background-color: white;
+    border: 1px solid rgb(105, 29, 29);
+}
+
 </style>
 <body>
     <div class="container">
-        <div class="scoreBoard">Pick!!!</div>
+        <div class="scoreBoard">
+            <h2 id="title">Pick</h2>
+            <h2 id="score"></h2>
+        </div>
         <div class="choice">
             <button >Rock</button>
             <button >Paper</button>
